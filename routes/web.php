@@ -3,7 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\HomeController;
+use App\Http\Controllers\CartController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +23,8 @@ Route::get('/', function () {
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+
+
 Route::get('/product', [App\Http\Controllers\ProductController::class, 'index']);
 Route::get('/product/search', [App\Http\Controllers\ProductController::class, 'search']);
 Route::post('/product/search', [App\Http\Controllers\ProductController::class, 'search']);
@@ -37,3 +40,15 @@ Route::get('/category/edit/{id?}' , [App\Http\Controllers\CategoryController::cl
 Route::post('/category/update' , [App\Http\Controllers\CategoryController::class, 'update']);
 Route::post('/category/edit' , [App\Http\Controllers\CategoryController::class, 'insert']);
 Route::get('/category/remove/{id?}' , [App\Http\Controllers\CategoryController::class, 'remove']);
+
+Route::get('/cart/view', [App\Http\Controllers\CartController::class, 'viewCart']);
+Route::get('/cart/add/{id}', [App\Http\Controllers\CartController::class, 'addToCart']);
+Route::get('/cart/delete/{id}', [App\Http\Controllers\CartController::class, 'deleteCart']);
+Route::get('/cart/update/{id}/{qty}', [App\Http\Controllers\CartController::class, 'updateCart']);
+
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/logout',[App\Http\Controllers\Auth\LoginController::class, 'logout']);

@@ -11,7 +11,7 @@ class ProductControllerApi extends Controller
 {
     public function product_list($category_id = null)
     {
-        if ($category_id) {
+       if ($category_id) {
             $products = Product::where('category_id', $category_id)->get();
         } else {
             $products = Product::all();
@@ -19,18 +19,16 @@ class ProductControllerApi extends Controller
         return response()->json(array('ok' => true, 'products' => $products));
     }
 
-    public function product_search(Request $request)
-    {
+    public function product_search(Request $request) {
         $query = $request->query;
 
         if ($query) {
-            $products = Product::where('name', 'like', '%' . $query . '%')->get();
+            $products = Product::where('name', 'like', '%' . $query . '%') -> get();
         } else {
             $products = Product::all();
         }
 
-        return response()->json(array(
-            'ok' => true,
+        return response() -> json(array('ok' => true,
             'products' => $products,
         ));
     }

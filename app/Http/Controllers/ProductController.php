@@ -22,7 +22,14 @@ class ProductController extends Controller
         if($query) {
             $products = Product::where('code', 'like', '%'.$query.'%')
             ->orWhere('name', 'like', '%'.$query.'%')
+            ->orWhere('price', 'like', '%'.$query.'%')
             ->paginate($this->rp);
+
+            //get image
+            foreach ($products as $product) {
+                $product->image_url = asset('./../'.$product->image_url);
+            }
+            
         } else {
                 $products = Product::paginate($this->rp);
         }
@@ -33,7 +40,8 @@ class ProductController extends Controller
         $categories = Category::pluck('name' , 'id')->prepend('เลือกรายการ' , "");
         if($id) {
             // edit view
-            $product = Product::where('id', $id)->first(); return view('product/edit')
+            $product = Product::where('id', $id)->first(); 
+            return view('product/edit')
             ->with('product', $product)
             ->with('categories', $categories);
         } else {
@@ -52,8 +60,8 @@ class ProductController extends Controller
         );
 
         $messages = array(
-            'required' => 'กรุณากรอกข้อมูล :attribute ให้ครบถ้วน', 'numeric' => 'กรุณากรอกข้อมูล
-            :attribute ให้เป็นตัวเลข',
+            'required' => 'กรุณากรอกข้อมูล :attribute ให้ครบถ้วน', 
+            'numeric' => 'กรุณากรอกข้อมูล :attribute ให้เป็นตัวเลข',
         );
 
         $id = $request->id;
@@ -81,23 +89,21 @@ class ProductController extends Controller
         
         $product->save();
 
-        if($request->hasFile('image'))
-        {
+        if($request->hasFile('image')){
             $f = $request->file('image');
-            $upload_to = 'upload/images'; //แปลว่า คุณต้องไปสร้างโฟลเดอร์ชื่อนี้ไว้ในโปรเจคคุณด้วยนะ
-
-            // get path
-            $relative_path = $upload_to.'/'.$f->getClientOriginalName();
-            $absolute_path = public_path().'/'.$upload_to;
-            // upload file
-            $f->move($absolute_path, $f->getClientOriginalName());
-        
-
-            // save image path to database
-            $product->image_url = $relative_path;
-            $product->save();
+            $upload_to = 'upload/image';
         }
 
+        // get path
+        $relative_path = $upload_to.'/'.$f->getClientOriginalName(); //path แบบสัมพันธ์
+        $absolute_path = public_path().'/'.$upload_to; // path แท้จริง
+        
+        // upload file
+        $f->move($absolute_path, $f->getClientOriginalName()); //อ่านจากเครื่องเจ้าหน้าที่ มาใน path แท้จริง'
+        $product->image_url = $relative_path; 
+        $product->save();
+        
+    
         return redirect('product')
         ->with('ok', 'True')
         ->with('msg', 'บันทึกข้อมูลเรียบร้อยแล้ว');
@@ -117,7 +123,7 @@ class ProductController extends Controller
             'required' => 'กรุณากรอกข้อมูล :attribute ให้ครบถ้วน', 'numeric' => 'กรุณากรอกข้อมูล
             :attribute ให้เป็นตัวเลข',
         );
-        
+
         $id = $request->id;
         $temp = array('code' => $request->code, 
                         'name' => $request->name, 
@@ -141,23 +147,25 @@ class ProductController extends Controller
         
         $product->save();
 
-        if($request->hasFile('image'))
-        {
+
+
+        
+
+        if($request->hasFile('image')){
             $f = $request->file('image');
-            $upload_to = 'upload/images'; //แปลว่า คุณต้องไปสร้างโฟลเดอร์ชื่อนี้ไว้ในโปรเจคคุณด้วยนะ
-
-            // get path
-            $relative_path = $upload_to.'/'.$f->getClientOriginalName();
-            $absolute_path = public_path().'/'.$upload_to;
-            // upload file
-            $f->move($absolute_path, $f->getClientOriginalName());
-        
-
-            // save image path to database
-            $product->image_url = $relative_path;
-            $product->save();
+            $upload_to = 'upload/image';
         }
-        
+
+        // get path
+        $relative_path = $upload_to.'/'.$f->getClientOriginalName(); //path แบบสัมพันธ์
+        $absolute_path = public_path().'/'.$upload_to; // path แท้จริง
+
+        // upload file
+        $f->move($absolute_path, $f->getClientOriginalName()); //อ่านจากเครื่องเจ้าหน้าที่ มาใน path แท้จริง'
+        $product->image_url = $relative_path;
+
+        $product->save();
+
         return redirect('product')
         ->with('ok', 'True')
         ->with('msg', 'บันทึกข้อมูลเรียบร้อยแล้ว');

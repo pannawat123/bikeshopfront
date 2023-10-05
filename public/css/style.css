@@ -1,3 +1,32 @@
+.bs_table {
+    margin: 0;
+    /*คำสั่งนี้จะทำให้ไม่มีระยะห่างขอบซ้ายของตาราง*/
+}
+
+.bs_table .bs-price {
+    text-align: right;
+    /*คำสั่งนี้จะทำให้ข้อความชิดขวา*/
+}
+
+.bs_table .bs-center {
+    text-align: center;
+    /*คำสั่งนี้จะทำให้ข้อความชิดกลาง*/
+
+}
+
+.bs-next {
+    text-align: center;
+    /*คำสั่งนี้จะทำให้ข้อความชิดกลาง*/
+}
+
+.bs_table thead tr th {
+    /*คำสั่งนี้จะทำให้ส่วนหัวของตารางมีสีพื้นหลังเป็นสีเทา*/
+    color: #fff;
+    background-color: #999;
+}
+
+/* Path: public/css/style.css */
+
 .bs-product-card {
     min-height: 290px;
     text-align: center;
