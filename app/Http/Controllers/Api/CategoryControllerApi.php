@@ -14,4 +14,6 @@ class CategoryControllerApi extends Controller
         $categories = Category::all();
         return response()->json(array('ok' => true, 'categories' => $categories));
     }
+
+    
 }

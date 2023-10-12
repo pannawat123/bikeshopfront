@@ -46,6 +46,9 @@ Route::get('/cart/add/{id}', [App\Http\Controllers\CartController::class, 'addTo
 Route::get('/cart/delete/{id}', [App\Http\Controllers\CartController::class, 'deleteCart']);
 Route::get('/cart/update/{id}/{qty}', [App\Http\Controllers\CartController::class, 'updateCart']);
 
+Route::get('/cart/checkout', [App\Http\Controllers\CartController::class, 'checkout']);
+Route::get('/cart/complete', [App\Http\Controllers\CartController::class, 'complete']);
+Route::get('/cart/finish' , [App\Http\Controllers\CartController::class, 'finish_order']);
 
 Auth::routes();
 
