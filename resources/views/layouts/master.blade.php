@@ -16,7 +16,7 @@
     <script src="{{ asset('js/angular.min.js') }}"></script>
 </head>
 <center>
-    <h1> นายปัณณวัฒน์ อิ่มศิลป์ 6406021620106 </h1>
+    <h1> We are BikerMan </h1>
 
 </center>
 
