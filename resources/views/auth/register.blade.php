@@ -4,8 +4,15 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('ลงทะเบียน') }}</div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="panel-title">
+                        <div class="card-header">{{ __('ลงทะเบียน') }}</div>
+                    </div>
+                </div>
+
+            <div class="panel-body">
+            
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('register') }}">

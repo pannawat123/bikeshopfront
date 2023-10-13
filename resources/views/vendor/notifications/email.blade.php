@@ -6,7 +6,7 @@
 @if ($level === 'error')
 # @lang('Whoops!')
 @else
-# @lang('Hello!')
+# @lang('Hello! guy your reset password')
 @endif
 @endif
 
@@ -51,7 +51,7 @@
 @isset($actionText)
 @slot('subcopy')
 @lang(
-    "If you're having trouble clicking the \":actionText\" button, copy and paste the URL below\n".
+    "ให้คุณ \":actionText\" เพื่อที่จะสามารถเข้าสู่ระบบได้\n".
     'ขอแสดงความนับถือ',
     [
         'actionText' => $actionText,

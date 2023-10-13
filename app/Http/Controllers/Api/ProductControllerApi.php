@@ -20,10 +20,10 @@ class ProductControllerApi extends Controller
     }
 
     public function product_search(Request $request) {
-        $query = $request->query;
+        $query = $request->search_query; //เปลี่ยนชื่อ query 
 
         if ($query) {
-            $products = Product::where('name', 'like', '%' . $query . '%') -> get();
+            $products = Product::where('name', 'like', '%' . $query . '%')->get();
         } else {
             $products = Product::all();
         }

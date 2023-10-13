@@ -52,6 +52,7 @@ Route::get('/cart/finish' , [App\Http\Controllers\CartController::class, 'finish
 
 Auth::routes();
 
+
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/logout',[App\Http\Controllers\Auth\LoginController::class, 'logout']);

@@ -72,7 +72,7 @@ class CartController extends Controller
     public function complete(Request $request)
     {
 
-        
+
         $cart_items = Session::get('cart_items');
         $cust_name = $request->cust_name;
         $cust_email = $request->cust_email;
@@ -92,13 +92,13 @@ class CartController extends Controller
             'po_date',
             'total_amount'
         ))->render();
-        
+
         $mpdf = new \Mpdf\Mpdf();
         $mpdf->debug = true;
         $mpdf->WriteHTML($html_output);
         $mpdf->Output('output.pdf', 'I');
         return $resp->withHeader("Content-type", "application/pdf");
-        
+
         // return view('cart/complete', compact(
         //     'cart_items',
         //     'cust_name',
@@ -109,8 +109,13 @@ class CartController extends Controller
         // ));
     }
 
-    public function finish_order() {
+    public function finish_order()
+    {
         $cart_items = Session::get('cart_items');
+        // if (is_null($cart_items)) {
+        //     $cart_items = array();
+        // }
+        Session::remove('cart_items');
         return redirect('/');
     }
 }

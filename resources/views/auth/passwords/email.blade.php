@@ -4,9 +4,14 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('ยกเลิกรหัสผ่าน') }}</div>
-
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="panel-title">
+                        <div class="card-header">{{ __('ยกเลิกรหัสผ่าน') }}</div>
+                    </div>
+                </div>
+           
+                <div class="panel-body">
                 <div class="card-body">
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
