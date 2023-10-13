@@ -16,7 +16,7 @@
     <script src="{{ asset('js/angular.min.js') }}"></script>
 </head>
 <center>
-    <h1> We are BikerMan </h1>
+    <h1> We are BikerMan V2</h1>
 
 </center>
 
